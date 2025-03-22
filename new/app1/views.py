@@ -197,7 +197,7 @@ def user_login(request):
                      return redirect('dashboard_v1')  # Redirect to dashboard
                 elif DataEmail.Usertype=='Employee':
                     # messages.success(request, f"Login successful! Welcome Employee {DataEmail.Full_name}.")
-                    messages.success(request, f"Login successful! Welcome! {DataEmail.Full_name}")
+                    messages.success(request, f"Login successful Welcome : {DataEmail.Full_name}")
                     return redirect('Sindex')
             else:
                 messages.error(request, "Invalid password")
