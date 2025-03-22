@@ -1,0 +1,433 @@
+<!--{% extends "base.html" %}-->
+
+
+<!--{% block content %}-->
+
+<!--<form class="row g-3 needs-validation" novalidate action="pro" method="POST">-->
+<!--    {% csrf_token %}-->
+<!--  <div class="col-md-4">-->
+<!--    <label for="validationCustom01" class="form-label">Product_Name</label>-->
+<!--    <input type="text" name="P_name" class="form-control" id="validationCustom01"   placeholder="Enter Product Name" required>-->
+
+<!--    <div class="valid-feedback">-->
+<!--      Looks good!-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="col-md-4">-->
+<!--    <label for="validationCustom02" class="form-label">Quantity</label>-->
+<!--    <input type="text" name="Quan" placeholder="Enter Quantity" class="form-control" id="validationCustom02" required>-->
+<!--    <div class="valid-feedback">-->
+<!--      Looks good!-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="col-md-4">-->
+<!--    <label for="validationCustomUsername" class="form-label">Price</label>-->
+<!--    <div class="input-group has-validation">-->
+<!--      <span class="input-group-text" id="inputGroupPrepend">@</span>-->
+<!--      <input type="text" name="Price" placeholder="Enter Price" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>-->
+<!--      <div class="invalid-feedback">-->
+<!--        Please choose a username.-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="col-12">-->
+<!--     <button type="submit" name="action" value="add">ADD</button>&ndash;&gt;-->
+<!--    <button type="submit" name="action" value="delete">DELETE</button>-->
+<!--    <button type="submit" name="action" value="update">UPDATE</button>-->
+
+<!--  </div>-->
+<!--</form>-->
+<!--&lt;!&ndash;<div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="text" name="P_name" placeholder="Enter Product Name">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="text" name="Quan" placeholder="Enter Quantity">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="text" name="Price" placeholder="Enter Price">&ndash;&gt;-->
+<!--&lt;!&ndash;    <button type="submit" name="action" value="add">ADD</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button type="submit" name="action" value="delete">DELETE</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button type="submit" name="action" value="update">UPDATE</button>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--<table  >-->
+<!--  <th>-->
+<!--      <tr>ID</tr>-->
+<!--      <tr>Product Name</tr>-->
+<!--      <tr>Quantities</tr>-->
+<!--      <tr>Price</tr>-->
+<!--  </th>-->
+<!--     {% for p in products %}-->
+<!--    <tr>-->
+
+<!--    <td>-->
+<!--        {{p.id}}-->
+<!--    </td>-->
+<!--        <td>-->
+<!--            {{p.p_name}}-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            {{p.Quantity}}-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            {{p.price}}-->
+<!--        </td>-->
+
+<!--    </tr>-->
+<!--{% endfor %}-->
+<!--</table>-->
+<!--{% endblock %}-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management System</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <script src="https://unpkg.com/@tailwindcss/browser@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-semibold text-center text-blue-600 mb-8">Leave Management System</h1>
+
+        <section id="dashboard" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Employee Dashboard</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-sm p-4">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Leave Balance</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div><p class="text-gray-600">Annual Leave:</p></div>
+                        <div><p class="text-blue-500 font-medium">10 days</p></div>
+                        <div><p class="text-gray-600">Sick Leave:</p></div>
+                        <div><p class="text-blue-500 font-medium">5 days</p></div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-4">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Upcoming Holidays</h3>
+                    <ul class="list-disc list-inside">
+                        <li class="text-gray-600">New Year's Day - January 1st</li>
+                        <li class="text-gray-600">Independence Day - August 15th</li>
+                        </ul>
+                </div>
+            </div>
+            <div class="mt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Pending Leave Requests</h3>
+                <ul class="list-disc list-inside">
+                    <li class="text-gray-600">Request for 2024-03-10 (Pending)</li>
+                    </ul>
+            </div>
+            <div class="mt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Quick Links</h3>
+                <div class="flex space-x-4">
+                    <a href="#leave-form" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Request Leave</a>
+                    <a href="#leave-history" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">View Leave History</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="leave-form1" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Leave Request Form</h2>
+            <form id="leave-form" class="space-y-4">
+                <div>
+                    <label for="leave-type" class="block text-gray-700 text-sm font-bold mb-2">Leave Type:</label>
+                    <select id="leave-type" name="leave-type" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="annual">Annual Leave</option>
+                        <option value="sick">Sick Leave</option>
+                        </select>
+                </div>
+                <div>
+                    <label for="start-date" class="block text-gray-700 text-sm font-bold mb-2">Start Date:</label>
+                    <input type="date" id="start-date" name="start-date" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div>
+                    <label for="end-date" class="block text-gray-700 text-sm font-bold mb-2">End Date:</label>
+                    <input type="date" id="end-date" name="end-date" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div>
+                    <label for="reason" class="block text-gray-700 text-sm font-bold mb-2">Reason for Leave:</label>
+                    <textarea id="reason" name="reason" rows="4" required class="shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                </div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit Request</button>
+            </form>
+        </section>
+
+        <section id="leave-history" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">My Leave Record</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full leading-normal shadow-md rounded-lg overflow-hidden">
+                    <thead class="bg-gray-200 text-gray-700">
+                        <tr>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Leave Type</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Start Date</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">End Date</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Status</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">Annual Leave</td>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">2024-03-01</td>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">2024-03-05</td>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm"><span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                <span aria-hidden class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                <span class="relative">Approved</span>
+                            </span></td>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm"><button class="withdraw-btn bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Withdraw</button></td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="holidays" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Holidays</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full leading-normal shadow-md rounded-lg overflow-hidden">
+                    <thead class="bg-gray-200 text-gray-700">
+                        <tr>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Date</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Holiday Name</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">2024-01-01</td>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">New Year's Day</td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="leave-types" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Leave Types</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full leading-normal shadow-md rounded-lg overflow-hidden">
+                    <thead class="bg-gray-200 text-gray-700">
+                        <tr>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Leave Type Name</th>
+                            </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">Annual Leave</td>
+                        </tr>
+                        <tr>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">Sick Leave</td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="approval" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Leave Approval</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full leading-normal shadow-md rounded-lg overflow-hidden">
+                    <thead class="bg-gray-200 text-gray-700">
+                        <tr>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Employee Name</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Leave Type</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Start Date</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">End Date</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Status</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">John Doe</td>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">Annual Leave</td>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">2024-03-10</td>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">2024-03-15</td>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm"><span class="relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight">
+                                <span aria-hidden class="absolute inset-0 bg-yellow-200 opacity-50 rounded-full"></span>
+                                <span class="relative">Pending</span>
+                            </span></td>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                                <button class="approve-btn bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">Approve</button>
+                                <button class="reject-btn bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Reject</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="add-leave-holiday" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Add Leave/Holiday</h2>
+            <form id="add-leave-holiday-form" class="space-y-4">
+                <div>
+                    <label for="type" class="block text-gray-700 text-sm font-bold mb-2">Type:</label>
+                    <select id="type" name="type" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="leave">Leave</option>
+                        <option value="holiday">Holiday</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                    <input type="text" id="name" name="name" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div>
+                    <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
+                    <input type="date" id="date" name="date" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add</button>
+            </form>
+        </section>
+
+        <section id="shift-management" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Shift Management</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full leading-normal shadow-md rounded-lg overflow-hidden">
+                    <thead class="bg-gray-200 text-gray-700">
+                        <tr>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Employee Name</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Shift</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold uppercase tracking-wider">Date</th>
+                            </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">Jane Smith</td>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">Morning</td>
+                            <td class="px-5 py-5 border-b border-gray-200 text-sm">2024-03-10</td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+            <div class="mt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Assign Shift</h3>
+                <form id="assign-shift-form" class="space-y-4">
+                    <div>
+                        <label for="employee" class="block text-gray-700 text-sm font-bold mb-2">Employee:</label>
+                        <select id="employee" name="employee" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="1">John Doe</option>
+                            <option value="2">Jane Smith</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="shift" class="block text-gray-700 text-sm font-bold mb-2">Shift:</label>
+                        <select id="shift" name="shift" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="morning">Morning</option>
+                            <option value="evening">Evening</option>
+                            <option value="night">Night</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="shift-date" class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
+                        <input type="date" id="shift-date" name="shift-date" required class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Assign Shift</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Leave Form Submission
+            const leaveForm = document.getElementById('leave-form');
+            if (leaveForm) {
+                leaveForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    // Get form data and send to server (using fetch or similar)
+                    const leaveType = document.getElementById('leave-type').value;
+                    const startDate = document.getElementById('start-date').value;
+                    const endDate = document.getElementById('end-date').value;
+                    const reason = document.getElementById('reason').value;
+
+                    console.log('Leave Request:', { leaveType, startDate, endDate, reason });
+                    alert('Leave request submitted (check console for data)!');
+
+                    // Reset the form
+                    leaveForm.reset();
+                });
+            }
+
+            // Withdraw Button Handling (Leave History)
+            const leaveHistoryTable = document.getElementById('leave-history');
+            if (leaveHistoryTable) {
+                leaveHistoryTable.addEventListener('click', function(event) {
+                    if (event.target.classList.contains('withdraw-btn')) {
+                        const row = event.target.closest('tr'); // Find the row
+                         const leaveType = row.querySelector('td:nth-child(1)').textContent;
+                        const startDate = row.querySelector('td:nth-child(2)').textContent;
+                        const endDate = row.querySelector('td:nth-child(3)').textContent;
+
+                        console.log('Withdraw Leave Request:', { leaveType, startDate, endDate });
+                        alert('Leave request withdrawn (check console for data)!');
+                       // Remove the row from the table
+                        row.remove();
+                    }
+                });
+            }
+
+
+            // Leave/Holiday Add Form Submission
+            const addLeaveHolidayForm = document.getElementById('add-leave-holiday-form');
+            if (addLeaveHolidayForm) {
+                addLeaveHolidayForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const type = document.getElementById('type').value;
+                    const name = document.getElementById('name').value;
+                    const date = document.getElementById('date').value;
+
+                    console.log('Add Leave/Holiday:', { type, name, date });
+                    alert('Leave/Holiday added (check console for data)!');
+                    addLeaveHolidayForm.reset();
+                });
+            }
+
+            // Shift Assignment Form Submission
+            const assignShiftForm = document.getElementById('assign-shift-form');
+            if (assignShiftForm) {
+                assignShiftForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const employee = document.getElementById('employee').value;
+                    const shift = document.getElementById('shift').value;
+                    const shiftDate = document.getElementById('shift-date').value;
+
+                    console.log('Assign Shift:', { employee, shift, shiftDate });
+                    alert('Shift assigned (check console for data)!');
+                    assignShiftForm.reset();
+                });
+            }
+
+            // Approval/Rejection Buttons (Leave Approval)
+            const approvalTable = document.getElementById('approval');
+            if (approvalTable) {
+                approvalTable.addEventListener('click', function(event) {
+                    if (event.target.classList.contains('approve-btn')) {
+                        const row = event.target.closest('tr');  // Get the row
+                        const employeeName = row.querySelector('td:nth-child(1)').textContent;
+                        const leaveType = row.querySelector('td:nth-child(2)').textContent;
+                        const startDate = row.querySelector('td:nth-child(3)').textContent;
+                        const endDate = row.querySelector('td:nth-child(4)').textContent;
+
+                        console.log('Approve Leave:', { employeeName, leaveType, startDate, endDate });
+                        alert('Leave approved (check console for data)!');
+                        row.querySelector('td:nth-child(5)').innerHTML = '<span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"><span aria-hidden class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span><span class="relative">Approved</span></span>';
+                        row.querySelector('td:nth-child(6)').innerHTML = ''; //remove buttons
+
+
+                    } else if (event.target.classList.contains('reject-btn')) {
+                        const row = event.target.closest('tr');
+                        const employeeName = row.querySelector('td:nth-child(1)').textContent;
+                        const leaveType = row.querySelector('td:nth-child(2)').textContent;
+                        const startDate = row.querySelector('td:nth-child(3)').textContent;
+                        const endDate = row.querySelector('td:nth-child(4)').textContent;
+                        console.log('Reject Leave:', { employeeName, leaveType, startDate, endDate });
+                        alert('Leave rejected (check console for data)!');
+                        row.querySelector('td:nth-child(5)').innerHTML = '<span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight"><span aria-hidden class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span><span class="relative">Rejected</span></span>';
+                        row.querySelector('td:nth-child(6)').innerHTML = ''; //remove buttons
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+
+{% block content %}
+
+<table class="table table-striped table-bordered table-hover table-dark table-sm">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+     {% for student in Students %}
+    <tr>
+
+    <td>
+        {{student.id}}
+    </td>
+        <td>
+            {{student.name}}
+        </td>
+        <td>
+            {{student.email}}
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table >
+
+<form action="add" method="post" >
+ {% csrf_token %}
+    <input type="text"  name="Name" placeholder="Enter Name" id="n1"><br>
+<input type="email" name="email" placeholder="Enter Email" id="Em1">
+<button type="submit" name="action" value="add">Add</button>
+    <button type="submit" name="action" value="delete">Delete</button>
+    <button type="submit" name="action" value="update">Update</button>
+
+</form>
+{% endblock %}
