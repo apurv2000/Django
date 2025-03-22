@@ -187,15 +187,17 @@ def user_login(request):
             # Directly compare passwords (since they're stored in plain text)
             if password == DataEmail.Password:
 
+
                 request.session['user_id'] = DataEmail.id
                 request.session['email'] = DataEmail.Email # stored id and email in a session
 
-                messages.success(request, f"Login successful! Welcome! {DataEmail.Full_name}")
+
                 if DataEmail.Usertype=='Admin':
                      # messages.success(request, f"Login successful! Welcome {DataEmail.Full_name}.")
                      return redirect('dashboard_v1')  # Redirect to dashboard
                 elif DataEmail.Usertype=='Employee':
                     # messages.success(request, f"Login successful! Welcome Employee {DataEmail.Full_name}.")
+                    messages.success(request, f"Login successful! Welcome! {DataEmail.Full_name}")
                     return redirect('Sindex')
             else:
                 messages.error(request, "Invalid password")
